@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnbrkwt8mctmj"]
+
+[ext_resource type="Script" uid="uid://d4gugjxdsjgv5" path="res://Scripts/item.gd" id="1_76mu4"]
+[ext_resource type="Texture2D" uid="uid://bknma0q766xio" path="res://Assets/icon.svg" id="1_ys0gr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_76mu4"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u06aw"]
+size = Vector2(64, 64)
+
+[node name="Item" type="RigidBody2D"]
+script = ExtResource("1_76mu4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.835715, 0.000358863, 0.791746, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ys0gr")
+
+[node name="GrabBox" type="Area2D" parent="." groups=["Item"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrabBox"]
+shape = SubResource("RectangleShape2D_76mu4")
+
+[node name="PhysicsCollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_u06aw")
+
+[connection signal="area_entered" from="GrabBox" to="." method="_on_grab_box_area_entered"]
