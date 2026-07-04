@@ -27,6 +27,10 @@ texture = ExtResource("2_wqkje")
 [node name="Claw" parent="." instance=ExtResource("1_tumq0")]
 position = Vector2(550, 47)
 
+[node name="HUD_Container" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="HUD_Container" instance=ExtResource("1_wqkje")]
+
 [node name="ItemSpawnArea" type="Area2D" parent="."]
 position = Vector2(725, 307)
 monitoring = false
@@ -66,7 +70,3 @@ position = Vector2(1163, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
 position = Vector2(0, 328)
 shape = SubResource("RectangleShape2D_6phgx")
-
-[node name="HUD_Container" type="CanvasLayer" parent="."]
-
-[node name="HUD" parent="HUD_Container" instance=ExtResource("1_wqkje")]

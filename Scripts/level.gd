@@ -69,7 +69,6 @@ func generate_level_requirements() -> void:
 
 # Spawn items random within the ItemSpawnAreaShape node
 func spawn_random_items():
-	print("ITEMS TO SPAWN: ", required_items_to_spawn)
 	var random_pos
 	var random_item
 	var new_item

@@ -5,6 +5,10 @@ extends CharacterBody2D
 @onready var claw_hit_box = $ClawPart/ClawHitBox
 @onready var pin_joint = $ClawPart/ClawCollisionShape/PinJoint2D
 
+@onready var claw_sprite = $ClawPart/ClawSprite
+@onready var open_hand_texture = preload("res://Assets/open_hand.png")
+@onready var closed_hand_texture = preload("res://Assets/closed_hand.png")
+
 # These bools help gate player input and track logic during a grab
 var is_grabbing = false
 var is_lowering = false
@@ -19,6 +23,7 @@ var CLAW_GRAB_SPEED = 10
 func _ready():
 	Globals.PIN_JOINT = pin_joint
 	Globals.CLAW = claw_part
+	claw_sprite.texture = open_hand_texture
 
 func _physics_process(_delta: float) -> void:
 	# If the claw is grabbing or releasing, disable the hit box
@@ -51,6 +56,7 @@ func get_input() -> void:
 # Release the grabbed item
 func claw_release() -> void:
 	is_releasing = true
+	claw_sprite.texture = open_hand_texture
 	Globals.release_grabbed_item()
 	await get_tree().create_timer(GRAB_COOLDOWN).timeout
 	holding_item = false
@@ -95,6 +101,7 @@ func _on_claw_hit_box_area_entered(area: Area2D) -> void:
 	if not holding_item:
 		if area.is_in_group("Item"):
 			holding_item = true
+			claw_sprite.texture = closed_hand_texture
 		is_lowering = false
 		
 		#if area.is_in_group("Structure"):

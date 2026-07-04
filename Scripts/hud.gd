@@ -5,19 +5,20 @@ extends Control
 @onready var requirements_label = $Level_Requirements/Label
 
 # How fast the player loses energy
-var DRAIN_RATE = 2
+var DRAIN_RATE = 1
 
 func _ready() -> void:
 	# Set Globals variables
 	Globals.HUD = self
 	Globals.score_label = score_label
-	Globals.energy = 100
+	Globals.energy = 77
 	energy_bar.value = Globals.energy
 
 # Update energy bar
 func _process(delta: float) -> void:
-	Globals.energy -= max(DRAIN_RATE * delta, 0.0)
-	energy_bar.value = Globals.energy
+	if Globals.game_state == "READY":
+		Globals.energy -= max(DRAIN_RATE * delta, 0.0)
+		energy_bar.value = Globals.energy
 
 # Update the label to read in the format "Item: 0/2"
 func update_requirements_list(requirements_dict) -> void:

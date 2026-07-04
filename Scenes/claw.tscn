@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ufh13opu64v3"]
+[gd_scene load_steps=7 format=3 uid="uid://ufh13opu64v3"]
 
 [ext_resource type="Script" uid="uid://qpn4ieka7pbk" path="res://Scripts/claw.gd" id="1_8412e"]
-[ext_resource type="Texture2D" uid="uid://bknma0q766xio" path="res://Assets/icon.svg" id="1_bcojo"]
+[ext_resource type="Texture2D" uid="uid://dsrqbrefj0lsu" path="res://Assets/open_hand.png" id="2_8412e"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_p07vi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p07vi"]
 size = Vector2(8, 8)
@@ -16,9 +18,10 @@ z_index = 100
 script = ExtResource("1_8412e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(0, -39)
-scale = Vector2(1.625, 0.25)
-texture = ExtResource("1_bcojo")
+scale = Vector2(128, 18)
+texture = SubResource("CanvasTexture_p07vi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -52)
@@ -29,7 +32,9 @@ position = Vector2(0, -8)
 scale = Vector2(0.5, 0.25)
 
 [node name="ClawSprite" type="Sprite2D" parent="ClawPart"]
-texture = ExtResource("1_bcojo")
+position = Vector2(0, -24)
+scale = Vector2(5, 5)
+texture = ExtResource("2_8412e")
 
 [node name="ClawHitBox" type="Area2D" parent="ClawPart" groups=["Claw"]]
 position = Vector2(0, -8)
