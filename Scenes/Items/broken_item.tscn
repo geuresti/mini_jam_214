@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2vahky23k64x"]
+
+[ext_resource type="PackedScene" uid="uid://dnbrkwt8mctmj" path="res://Scenes/Items/item.tscn" id="1_dwfcs"]
+[ext_resource type="Texture2D" uid="uid://cnsvsudusxhpt" path="res://Assets/calico_cat.png" id="2_0ait3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0ait3"]
+radius = 28.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jsala"]
+radius = 27.0185
+
+[node name="BrokenItem" instance=ExtResource("1_dwfcs")]
+energy = -15
+item_type = "Broken"
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(-1, 1)
+scale = Vector2(2, 2)
+texture = ExtResource("2_0ait3")
+
+[node name="CollisionShape2D" parent="GrabBox" index="0"]
+shape = SubResource("CircleShape2D_0ait3")
+
+[node name="PhysicsCollisionShape" parent="." index="2"]
+shape = SubResource("CircleShape2D_jsala")

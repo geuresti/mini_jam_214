@@ -1,11 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://kuvp1brhjfkm"]
+[gd_scene load_steps=11 format=3 uid="uid://kuvp1brhjfkm"]
 
 [ext_resource type="Script" uid="uid://c1xrkjgck5agu" path="res://Scenes/level.gd" id="1_0f350"]
 [ext_resource type="PackedScene" uid="uid://ufh13opu64v3" path="res://Scenes/claw.tscn" id="1_tumq0"]
 [ext_resource type="PackedScene" uid="uid://b58bvdfgl50jo" path="res://Scenes/HUD.tscn" id="1_wqkje"]
-[ext_resource type="PackedScene" uid="uid://dnbrkwt8mctmj" path="res://Scenes/item.tscn" id="2_k5f4k"]
 [ext_resource type="PackedScene" uid="uid://oo8fgpx34kmi" path="res://Scenes/bucket.tscn" id="3_6phgx"]
-[ext_resource type="PackedScene" uid="uid://wodfkh32yxag" path="res://Scenes/gear_item.tscn" id="3_81xng"]
+[ext_resource type="PackedScene" uid="uid://wodfkh32yxag" path="res://Scenes/Items/gear_item.tscn" id="3_81xng"]
+[ext_resource type="PackedScene" uid="uid://c41irqex016gn" path="res://Scenes/Items/battery_item.tscn" id="6_754fn"]
+[ext_resource type="PackedScene" uid="uid://d2vahky23k64x" path="res://Scenes/Items/broken_item.tscn" id="7_bvt00"]
+[ext_resource type="PackedScene" uid="uid://cvlqnpsx4cevk" path="res://Scenes/Items/screw_item.tscn" id="8_oqgf2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k5f4k"]
 size = Vector2(1154, 20)
@@ -16,7 +18,7 @@ size = Vector2(32, 656)
 [node name="Level" type="Node2D"]
 script = ExtResource("1_0f350")
 
-[node name="Hud" parent="." instance=ExtResource("1_wqkje")]
+[node name="HUD" parent="." instance=ExtResource("1_wqkje")]
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -36,23 +38,21 @@ scale = Vector2(2.18318, 4.19586)
 
 [node name="ItemManager" type="Node2D" parent="."]
 
-[node name="Item" parent="ItemManager" instance=ExtResource("2_k5f4k")]
-position = Vector2(680, 456)
-
-[node name="Item2" parent="ItemManager" instance=ExtResource("2_k5f4k")]
-position = Vector2(1016, 392)
-
-[node name="Item3" parent="ItemManager" instance=ExtResource("2_k5f4k")]
-position = Vector2(920, 120)
-
 [node name="GearItem" parent="ItemManager" instance=ExtResource("3_81xng")]
 position = Vector2(765, 302)
+item_type = "gear"
 
-[node name="GearItem2" parent="ItemManager" instance=ExtResource("3_81xng")]
-position = Vector2(853, 204)
+[node name="BatteryItem" parent="ItemManager" instance=ExtResource("6_754fn")]
+position = Vector2(476, 398)
+item_type = "battery"
 
-[node name="GearItem3" parent="ItemManager" instance=ExtResource("3_81xng")]
-position = Vector2(967, 491)
+[node name="BrokenItem" parent="ItemManager" instance=ExtResource("7_bvt00")]
+position = Vector2(899, 447)
+item_type = "broken"
+
+[node name="ScrewItem" parent="ItemManager" instance=ExtResource("8_oqgf2")]
+position = Vector2(681, 451)
+item_type = "screw"
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(576, 655)

@@ -5,13 +5,12 @@ extends RigidBody2D
 
 # This variables will vary by sub class (Ex: gear, screw, etc.)
 @export var points = 5
-@export var sprite_texture : Texture2D = preload("res://Assets/icon.svg")
+@export var energy = 0
+#@export var sprite_texture : Texture2D = preload("res://Assets/icon.svg")
+@export var item_type = "Item"
  
 var is_grabbed : bool = false
 var follow_claw : bool = false
-
-# Set texture on ready to allow for subclassed items to choose their own sprite
-func _ready() -> void: $Sprite2D.texture = sprite_texture
 
 # Follow the claw as it retracts upwards after a grab
 func _process(_delta: float) -> void:
@@ -42,5 +41,5 @@ func released_by_claw() -> void:
 
 # Triggered when an item makes it into the bucket (this is called by bucket.gd)
 func captured() -> void:
-	Globals.update_player_score(points)
+	Globals.player_captured_item(points, energy, item_type)
 	queue_free()

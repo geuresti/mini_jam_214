@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvlqnpsx4cevk"]
+
+[ext_resource type="PackedScene" uid="uid://dnbrkwt8mctmj" path="res://Scenes/Items/item.tscn" id="1_m3dlb"]
+[ext_resource type="Texture2D" uid="uid://24bv2iksrdfi" path="res://Assets/sprites.png" id="2_7ubyo"]
+
+[node name="ScrewItem" instance=ExtResource("1_m3dlb")]
+points = 15
+item_type = "Screw"
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(2, 2)
+texture = ExtResource("2_7ubyo")
+hframes = 8
+vframes = 10
+frame = 2
