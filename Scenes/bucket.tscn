@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://oo8fgpx34kmi"]
+[gd_scene load_steps=8 format=3 uid="uid://oo8fgpx34kmi"]
 
 [ext_resource type="Script" uid="uid://du8ojcffubmhm" path="res://Scripts/bucket.gd" id="1_b0qqc"]
 [ext_resource type="Texture2D" uid="uid://dfxu13wriqs1x" path="res://Assets/bucket.png" id="2_dco0c"]
@@ -15,13 +15,16 @@ size = Vector2(4, 75.0634)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fl0yo"]
 size = Vector2(59, 34)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7pcy1"]
+size = Vector2(100, 2)
+
 [node name="Bucket" type="Node2D"]
 script = ExtResource("1_b0qqc")
 
 [node name="BucketBG" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.32549)
-position = Vector2(48, -49.25)
-scale = Vector2(1.23077, 0.72561)
+position = Vector2(48, -48.75)
+scale = Vector2(1.23077, 0.713415)
 texture = ExtResource("2_dco0c")
 
 [node name="Bucket" type="Sprite2D" parent="."]
@@ -56,6 +59,13 @@ shape = SubResource("RectangleShape2D_dco0c")
 modulate = Color(1, 0.388001, 0.576384, 1)
 position = Vector2(47.5, -19)
 shape = SubResource("RectangleShape2D_fl0yo")
+
+[node name="ClawBoundary" type="Area2D" parent="." groups=["Structure"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClawBoundary"]
+position = Vector2(48, -77)
+shape = SubResource("RectangleShape2D_7pcy1")
+debug_color = Color(0.813539, 0.00203189, 0.979641, 0.42)
 
 [connection signal="area_entered" from="ScoreZone" to="." method="_on_score_zone_area_entered"]
 [connection signal="area_exited" from="ScoreZone" to="." method="_on_score_zone_area_exited"]

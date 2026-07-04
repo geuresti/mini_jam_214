@@ -9,6 +9,13 @@ extends CharacterBody2D
 @onready var open_hand_texture = preload("res://Assets/open_hand.png")
 @onready var closed_hand_texture = preload("res://Assets/closed_hand.png")
 
+@onready var claw_body_sprite = $ClawBodySprite
+@onready var default_grab_texture = preload("res://Assets/neutral_bar.png")
+@onready var missed_grab_texture = preload("res://Assets/frown_bar.png")
+@onready var successful_grab_texture = preload("res://Assets/smile_bar.png")
+
+@onready var cable = $Cable
+
 # These bools help gate player input and track logic during a grab
 var is_grabbing = false
 var is_lowering = false
@@ -24,8 +31,15 @@ func _ready():
 	Globals.PIN_JOINT = pin_joint
 	Globals.CLAW = claw_part
 	claw_sprite.texture = open_hand_texture
+	claw_body_sprite.texture = default_grab_texture
 
 func _physics_process(_delta: float) -> void:
+	# Small offset to accomodate sprite position
+	cable.set_point_position(1, to_local(
+		Vector2(claw_sprite.global_position.x - 2,
+		claw_sprite.global_position.y - 20))
+	)
+	
 	# If the claw is grabbing or releasing, disable the hit box
 	# this prevents items from getting stuck floating in the air
 	if holding_item or is_releasing:
@@ -84,6 +98,14 @@ func lower_claw() -> bool:
 # Retract the claw and attach the grabbed item
 func retract_claw() -> bool:
 	is_retracting = true
+	
+	# Update the texture for a missed grab
+	if not holding_item:
+		claw_body_sprite.texture = missed_grab_texture
+	# Update texture for successful grab
+	else:
+		claw_body_sprite.texture = successful_grab_texture
+	
 	while claw_part.position.y > 0:
 		claw_part.position.y -= CLAW_GRAB_SPEED
 		await get_tree().process_frame
@@ -94,6 +116,7 @@ func retract_claw() -> bool:
 		Globals.grabbed_item.connect_to_joint()
 	
 	is_retracting = false
+	claw_body_sprite.texture = default_grab_texture
 	return true
 
 # An area overlapped with the claw's hitbox (either an Item or a Strcture)

@@ -17,7 +17,15 @@ var score_label = null
 
 var HUD
 var level = 1
-var required_level_items = {}
+var required_level_items = {
+	"screw": 0,
+	"battery": 0,
+	"gear": 0,
+	"crate": 0,
+	"golden gear": 0,
+	"hex nut": 0,
+	"wheel": 0
+}
 var current_captured_items = {
 	"screw": 0,
 	"battery": 0,
@@ -25,6 +33,7 @@ var current_captured_items = {
 	"bomb": 0,
 	"crate": 0,
 	"golden gear": 0,
+	"energy bar": 0,
 	"hex nut": 0,
 	"wheel": 0
 }
@@ -40,7 +49,7 @@ func player_captured_item(points_value: int, energy_value: int, item_type: Strin
 	current_captured_items[item_type] += 1
 	
 	# Update HUD to show new values
-	HUD.update_requirements_list(required_level_items)
+	HUD.update_requirements_list()
 	
 	# Check if the level is complete
 	if check_if_level_complete():

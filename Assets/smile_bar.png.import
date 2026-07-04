@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bed7bu1anui0f"
-path="res://.godot/imported/base_bar.png-8a6c72451cdb57d3f7013d0012e627eb.ctex"
+uid="uid://bg6irfa37l2er"
+path="res://.godot/imported/smile_bar.png-56cb89632dc1e54a964f42a8bd744b78.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/base_bar.png"
-dest_files=["res://.godot/imported/base_bar.png-8a6c72451cdb57d3f7013d0012e627eb.ctex"]
+source_file="res://Assets/smile_bar.png"
+dest_files=["res://.godot/imported/smile_bar.png-56cb89632dc1e54a964f42a8bd744b78.ctex"]
 
 [params]
 

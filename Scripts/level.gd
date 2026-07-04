@@ -15,6 +15,7 @@ extends Node2D
 	"golden gear": preload("res://Scenes/Items/golden_gear_item.tscn"),
 	"hex nut": preload("res://Scenes/Items/hex_nut_item.tscn"),
 	"wheel": preload("res://Scenes/Items/wheel_item.tscn"),
+	"energy bar": preload("res://Scenes/Items/energy_bar.tscn"),
 	"bomb": preload("res://Scenes/Items/bomb_item.tscn"),
 }
 
@@ -38,34 +39,20 @@ func _ready() -> void:
 
 # Generate a random set of required items to beat the level
 func generate_level_requirements() -> void:
-	# "Bomb" won't be picked as a required item
-	var required_items = {
-		"screw": 0,
-		"battery": 0,
-		"gear": 0,
-		"crate": 0,
-		"golden gear": 0,
-		"hex nut": 0,
-		"wheel": 0
-	}
-	
 	var random_item
 	
 	# Scale the required items by the level value
 	for i in (min_required_items + Globals.level):
 		random_item = preloaded_items.keys().pick_random()
-		# Avoid picking a bomb as a required item
-		while random_item == "bomb":
+		# Avoid picking a bomb / energy bar as a required item
+		while random_item == "bomb" or random_item == "energy bar":
 			random_item = preloaded_items.keys().pick_random()
 		# Increment the number required for the specific item
-		required_items[random_item] += 1
+		Globals.required_level_items[random_item] += 1
 		required_items_to_spawn.append(random_item)
 	
-	# Update Globals var
-	Globals.required_level_items = required_items
-	
 	# Tell HUD to update the requirements label
-	HUD.update_requirements_list(required_items)
+	HUD.update_requirements_list()
 
 # Spawn items random within the ItemSpawnAreaShape node
 func spawn_random_items():

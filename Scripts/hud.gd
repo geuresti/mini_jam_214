@@ -11,7 +11,7 @@ func _ready() -> void:
 	# Set Globals variables
 	Globals.HUD = self
 	Globals.score_label = score_label
-	Globals.energy = 77
+	Globals.energy = 100
 	energy_bar.value = Globals.energy
 
 # Update energy bar
@@ -21,10 +21,10 @@ func _process(delta: float) -> void:
 		energy_bar.value = Globals.energy
 
 # Update the label to read in the format "Item: 0/2"
-func update_requirements_list(requirements_dict) -> void:
+func update_requirements_list() -> void:
 	var requirements_text = ""
-	for key in requirements_dict:
-		var value = requirements_dict[key]
+	for key in Globals.required_level_items:
+		var value = Globals.required_level_items[key]
 		if value > 0:
 			requirements_text += str(key) + ": " + str(Globals.current_captured_items[key]) + " / " + str(value) + "\n"
 	requirements_label.text = requirements_text

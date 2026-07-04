@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b58bvdfgl50jo"]
+[gd_scene load_steps=4 format=3 uid="uid://b58bvdfgl50jo"]
 
 [ext_resource type="Script" uid="uid://4iifj00xcf60" path="res://Scripts/hud.gd" id="1_sd512"]
-[ext_resource type="Texture2D" uid="uid://dvjsi1ttmpuag" path="res://Assets/under_bar.png" id="2_s3jbq"]
-[ext_resource type="Texture2D" uid="uid://bed7bu1anui0f" path="res://Assets/base_bar.png" id="3_c3eba"]
-[ext_resource type="Texture2D" uid="uid://b7xn76swgdgji" path="res://Assets/progress_bar.png" id="4_g8s2e"]
+[ext_resource type="Texture2D" uid="uid://cllgm38457004" path="res://Assets/energy_bar_over.png" id="2_psnte"]
+[ext_resource type="Texture2D" uid="uid://11aohr8cvjwb" path="res://Assets/energy_bar_progress.png" id="3_s3jbq"]
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -28,19 +27,19 @@ text = "Score: 0"
 [node name="EnergyBar" type="TextureProgressBar" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.82
-anchor_top = 0.026
+anchor_left = 0.904
+anchor_top = 0.017
 anchor_right = 0.987
-anchor_bottom = 0.137
-offset_left = 0.359985
-offset_top = 0.152
-offset_right = -128.024
-offset_bottom = -47.776
+anchor_bottom = 0.313
+offset_left = -0.408081
+offset_top = -0.0160007
+offset_right = -64.024
+offset_bottom = -127.824
 scale = Vector2(3, 3)
-value = 77.0
-texture_under = ExtResource("2_s3jbq")
-texture_over = ExtResource("3_c3eba")
-texture_progress = ExtResource("4_g8s2e")
+value = 35.0
+fill_mode = 3
+texture_over = ExtResource("2_psnte")
+texture_progress = ExtResource("3_s3jbq")
 
 [node name="Level_Requirements" type="Panel" parent="."]
 layout_mode = 1

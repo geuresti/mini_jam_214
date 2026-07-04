@@ -1,15 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://ufh13opu64v3"]
+[gd_scene load_steps=8 format=3 uid="uid://ufh13opu64v3"]
 
 [ext_resource type="Script" uid="uid://qpn4ieka7pbk" path="res://Scripts/claw.gd" id="1_8412e"]
 [ext_resource type="Texture2D" uid="uid://dsrqbrefj0lsu" path="res://Assets/open_hand.png" id="2_8412e"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_p07vi"]
+[ext_resource type="Texture2D" uid="uid://bmqni4nwujw31" path="res://Assets/neutral_bar.png" id="2_rnn4h"]
+[ext_resource type="Texture2D" uid="uid://de6n76ytuouhf" path="res://Assets/claw_cable.png" id="3_5xjfu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p07vi"]
 size = Vector2(8, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8412e"]
-size = Vector2(128, 32)
+size = Vector2(120, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rnn4h"]
 
@@ -17,30 +17,28 @@ size = Vector2(128, 32)
 z_index = 100
 script = ExtResource("1_8412e")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(0, -39)
-scale = Vector2(128, 18)
-texture = SubResource("CanvasTexture_p07vi")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -52)
+position = Vector2(0, -50)
 shape = SubResource("RectangleShape2D_p07vi")
 
+[node name="ClawBodySprite" type="Sprite2D" parent="."]
+position = Vector2(0, -57)
+scale = Vector2(2, 2)
+texture = ExtResource("2_rnn4h")
+
 [node name="ClawPart" type="StaticBody2D" parent="."]
-position = Vector2(0, -8)
 scale = Vector2(0.5, 0.25)
 
 [node name="ClawSprite" type="Sprite2D" parent="ClawPart"]
-position = Vector2(0, -24)
-scale = Vector2(5, 5)
+position = Vector2(4, 0)
+scale = Vector2(5.6, 7)
 texture = ExtResource("2_8412e")
 
 [node name="ClawHitBox" type="Area2D" parent="ClawPart" groups=["Claw"]]
-position = Vector2(0, -8)
+position = Vector2(0, 34)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ClawPart/ClawHitBox"]
-position = Vector2(0, 48)
+position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_8412e")
 
 [node name="ClawCollisionShape" type="CollisionShape2D" parent="ClawPart"]
@@ -48,8 +46,15 @@ position = Vector2(0, -128)
 shape = SubResource("RectangleShape2D_rnn4h")
 
 [node name="PinJoint2D" type="PinJoint2D" parent="ClawPart/ClawCollisionShape"]
-position = Vector2(0, 224)
+position = Vector2(0, 60)
 scale = Vector2(2, 4)
 node_a = NodePath("../../..")
+
+[node name="Cable" type="Line2D" parent="."]
+position = Vector2(0, 2)
+points = PackedVector2Array(0, -36, 0, -28)
+width = 12.0
+texture = ExtResource("3_5xjfu")
+texture_mode = 1
 
 [connection signal="area_entered" from="ClawPart/ClawHitBox" to="." method="_on_claw_hit_box_area_entered"]
