@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://kuvp1brhjfkm"]
+[gd_scene load_steps=9 format=3 uid="uid://kuvp1brhjfkm"]
 
+[ext_resource type="Script" uid="uid://c1xrkjgck5agu" path="res://Scenes/level.gd" id="1_0f350"]
 [ext_resource type="PackedScene" uid="uid://ufh13opu64v3" path="res://Scenes/claw.tscn" id="1_tumq0"]
+[ext_resource type="PackedScene" uid="uid://b58bvdfgl50jo" path="res://Scenes/HUD.tscn" id="1_wqkje"]
 [ext_resource type="PackedScene" uid="uid://dnbrkwt8mctmj" path="res://Scenes/item.tscn" id="2_k5f4k"]
+[ext_resource type="PackedScene" uid="uid://oo8fgpx34kmi" path="res://Scenes/bucket.tscn" id="3_6phgx"]
+[ext_resource type="PackedScene" uid="uid://wodfkh32yxag" path="res://Scenes/gear_item.tscn" id="3_81xng"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k5f4k"]
 size = Vector2(1154, 20)
@@ -10,9 +14,25 @@ size = Vector2(1154, 20)
 size = Vector2(32, 656)
 
 [node name="Level" type="Node2D"]
+script = ExtResource("1_0f350")
+
+[node name="Hud" parent="." instance=ExtResource("1_wqkje")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 52.0
+offset_top = 9.0
+offset_right = 52.0
+offset_bottom = 9.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="Claw" parent="." instance=ExtResource("1_tumq0")]
 position = Vector2(560, 48)
+
+[node name="Bucket" parent="." instance=ExtResource("3_6phgx")]
+position = Vector2(3, 648)
+scale = Vector2(2.18318, 4.19586)
 
 [node name="ItemManager" type="Node2D" parent="."]
 
@@ -25,14 +45,14 @@ position = Vector2(1016, 392)
 [node name="Item3" parent="ItemManager" instance=ExtResource("2_k5f4k")]
 position = Vector2(920, 120)
 
-[node name="Item4" parent="ItemManager" instance=ExtResource("2_k5f4k")]
-position = Vector2(544, 304)
+[node name="GearItem" parent="ItemManager" instance=ExtResource("3_81xng")]
+position = Vector2(765, 302)
 
-[node name="Item5" parent="ItemManager" instance=ExtResource("2_k5f4k")]
-position = Vector2(720, 160)
+[node name="GearItem2" parent="ItemManager" instance=ExtResource("3_81xng")]
+position = Vector2(853, 204)
 
-[node name="Item6" parent="ItemManager" instance=ExtResource("2_k5f4k")]
-position = Vector2(760, 280)
+[node name="GearItem3" parent="ItemManager" instance=ExtResource("3_81xng")]
+position = Vector2(967, 491)
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(576, 655)

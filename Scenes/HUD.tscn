@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://b58bvdfgl50jo"]
+
+[ext_resource type="Script" uid="uid://4iifj00xcf60" path="res://Scripts/hud.gd" id="1_sd512"]
+
+[node name="Hud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sd512")
+
+[node name="Top_Row_UI" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 12.0
+offset_right = -12.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="Score" type="Label" parent="Top_Row_UI"]
+layout_mode = 2
+text = "Score: 0"

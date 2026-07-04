@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://wodfkh32yxag"]
+
+[ext_resource type="PackedScene" uid="uid://dnbrkwt8mctmj" path="res://Scenes/item.tscn" id="1_koha3"]
+[ext_resource type="Texture2D" uid="uid://53ibaldn4x5" path="res://Assets/orange_cat.png" id="2_6ga5c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6ga5c"]
+radius = 32.9848
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kj02d"]
+radius = 32.0
+
+[node name="GearItem" instance=ExtResource("1_koha3")]
+points = 10
+sprite_texture = ExtResource("2_6ga5c")
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(1, 1)
+
+[node name="CollisionShape2D" parent="GrabBox" index="0"]
+shape = SubResource("CircleShape2D_6ga5c")
+
+[node name="PhysicsCollisionShape" parent="." index="2"]
+shape = SubResource("CircleShape2D_kj02d")

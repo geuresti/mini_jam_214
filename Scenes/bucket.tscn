@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://oo8fgpx34kmi"]
+
+[ext_resource type="Script" uid="uid://du8ojcffubmhm" path="res://Scripts/bucket.gd" id="1_b0qqc"]
+[ext_resource type="Texture2D" uid="uid://bknma0q766xio" path="res://Assets/icon.svg" id="2_dco0c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hgwrd"]
+size = Vector2(128, 4.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b0qqc"]
+size = Vector2(4, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dco0c"]
+size = Vector2(4, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fl0yo"]
+size = Vector2(120, 20)
+
+[node name="Bucket" type="Node2D"]
+script = ExtResource("1_b0qqc")
+
+[node name="BucketFloor" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BucketFloor"]
+position = Vector2(64, -1.75)
+shape = SubResource("RectangleShape2D_hgwrd")
+
+[node name="BucketLeftWall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BucketLeftWall"]
+position = Vector2(2, -32)
+shape = SubResource("RectangleShape2D_b0qqc")
+
+[node name="BucketRightWall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BucketRightWall"]
+position = Vector2(126, -32)
+shape = SubResource("RectangleShape2D_dco0c")
+
+[node name="ScoreZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreZone"]
+modulate = Color(1, 0.388001, 0.576384, 1)
+position = Vector2(64, -14)
+shape = SubResource("RectangleShape2D_fl0yo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.396078)
+position = Vector2(64, -32)
+scale = Vector2(1, 0.5)
+texture = ExtResource("2_dco0c")
+
+[connection signal="area_entered" from="ScoreZone" to="." method="_on_score_zone_area_entered"]
+[connection signal="area_exited" from="ScoreZone" to="." method="_on_score_zone_area_exited"]
