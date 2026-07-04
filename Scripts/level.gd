@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var level_floor = $Floor
 @onready var HUD = $HUD_Container/HUD
+@onready var scene_transition = $HUD_Container/SceneTransition
 
 @onready var item_spawn_area = $ItemSpawnArea
 @onready var item_spawn_area_shape = $ItemSpawnArea/ItemSpawnAreaShape
@@ -22,11 +23,6 @@ extends Node2D
 # Track which items NEED to spawn to meet level requirements
 var required_items_to_spawn = []
 
-# Testing platform manipulation
-#func _ready() -> void:
-#	await get_tree().create_timer(1).timeout
-#	level_floor.rotate(0.43)
-
 # How many items will fill the claw machine at minium
 var MIN_ITEMS_SPAWN = 8
 
@@ -34,6 +30,9 @@ var MIN_ITEMS_SPAWN = 8
 var min_required_items = 2
 
 func _ready() -> void:
+	#level_floor.rotate(0.43)
+	scene_transition.visible = true
+	await fade_in_out(true)
 	generate_level_requirements()
 	spawn_random_items()
 
@@ -94,3 +93,13 @@ func get_random_spawn() -> Vector2:
 			item_spawn_area_shape.position.y + shape.y)
 		)
 	return pos 
+
+# Fade effect for entering / leaving the scene
+func fade_in_out(fade_in : bool) -> bool:
+	var tween = create_tween()
+	if fade_in:
+		tween.tween_property(scene_transition, "modulate:a", 0, 0.5)
+	else:
+		tween.tween_property(scene_transition, "modulate:a", 1, 0.5)
+	await tween.finished
+	return true

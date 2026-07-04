@@ -40,6 +40,7 @@ value = 35.0
 fill_mode = 3
 texture_over = ExtResource("2_psnte")
 texture_progress = ExtResource("3_s3jbq")
+texture_progress_offset = Vector2(0, 1)
 
 [node name="Level_Requirements" type="Panel" parent="."]
 layout_mode = 1

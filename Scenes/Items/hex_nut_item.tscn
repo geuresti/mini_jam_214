@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://7ry0qh2lanry"]
+[gd_scene load_steps=5 format=3 uid="uid://7ry0qh2lanry"]
 
 [ext_resource type="PackedScene" uid="uid://dnbrkwt8mctmj" path="res://Scenes/Items/item.tscn" id="1_x7iey"]
 [ext_resource type="Texture2D" uid="uid://24bv2iksrdfi" path="res://Assets/sprites.png" id="2_7sv5i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7sv5i"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_koeer"]
+size = Vector2(32, 32)
 
 [node name="HexNutItem" instance=ExtResource("1_x7iey")]
 item_type = "hex nut"
@@ -14,6 +20,8 @@ frame = 3
 
 [node name="CollisionShape2D" parent="GrabBox" index="0"]
 position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_7sv5i")
 
 [node name="PhysicsCollisionShape" parent="." index="2"]
 position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_koeer")

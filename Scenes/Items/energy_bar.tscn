@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dly38gbti6b7f"]
+[gd_scene load_steps=5 format=3 uid="uid://dly38gbti6b7f"]
 
 [ext_resource type="PackedScene" uid="uid://dnbrkwt8mctmj" path="res://Scenes/Items/item.tscn" id="1_wk7tf"]
-[ext_resource type="Texture2D" uid="uid://bmx4dxspimxu7" path="res://Assets/assets2.png" id="2_rtbej"]
+[ext_resource type="Texture2D" uid="uid://24bv2iksrdfi" path="res://Assets/sprites.png" id="2_rtbej"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rtbej"]
+size = Vector2(58, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jtkdd"]
+size = Vector2(58, 17)
 
 [node name="EnergyBarItem" instance=ExtResource("1_wk7tf")]
 energy = 15
@@ -19,6 +25,8 @@ position = Vector2(2, 1)
 
 [node name="CollisionShape2D" parent="GrabBox" index="0"]
 position = Vector2(-2, -1.5)
+shape = SubResource("RectangleShape2D_rtbej")
 
 [node name="PhysicsCollisionShape" parent="." index="2"]
 position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_jtkdd")

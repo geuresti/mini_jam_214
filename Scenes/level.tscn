@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://kuvp1brhjfkm"]
+[gd_scene load_steps=11 format=3 uid="uid://kuvp1brhjfkm"]
 
 [ext_resource type="Script" uid="uid://c1xrkjgck5agu" path="res://Scripts/level.gd" id="1_0f350"]
 [ext_resource type="PackedScene" uid="uid://ufh13opu64v3" path="res://Scenes/claw.tscn" id="1_tumq0"]
 [ext_resource type="PackedScene" uid="uid://b58bvdfgl50jo" path="res://Scenes/HUD.tscn" id="1_wqkje"]
 [ext_resource type="Texture2D" uid="uid://da18lnvit7hdl" path="res://Assets/background.png" id="2_wqkje"]
 [ext_resource type="PackedScene" uid="uid://oo8fgpx34kmi" path="res://Scenes/bucket.tscn" id="3_6phgx"]
+[ext_resource type="Texture2D" uid="uid://cm532s7cwy3xy" path="res://Assets/blank_button.png" id="3_8c0lf"]
+[ext_resource type="Texture2D" uid="uid://bmjjh3u0opv67" path="res://Assets/blank_button_pressed.png" id="4_754fn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81xng"]
 size = Vector2(730, 70)
@@ -18,15 +20,56 @@ size = Vector2(32, 656)
 [node name="Level" type="Node2D"]
 script = ExtResource("1_0f350")
 
+[node name="HUD_Container" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="HUD_Container" instance=ExtResource("1_wqkje")]
+
+[node name="GameOverUI" type="Control" parent="HUD_Container"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="HUD_Container/GameOverUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.196078, 0.196078, 0.196078, 0.756863)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD_Container/GameOverUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureButton" type="TextureButton" parent="HUD_Container/GameOverUI/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("3_8c0lf")
+texture_pressed = ExtResource("4_754fn")
+
+[node name="SceneTransition" type="ColorRect" parent="HUD_Container"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
 [node name="Background" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.301961)
 offset_right = 1167.0
 offset_bottom = 653.0
 texture = ExtResource("2_wqkje")
-
-[node name="HUD_Container" type="CanvasLayer" parent="."]
-
-[node name="HUD" parent="HUD_Container" instance=ExtResource("1_wqkje")]
 
 [node name="Claw" parent="." instance=ExtResource("1_tumq0")]
 position = Vector2(542, 82)
