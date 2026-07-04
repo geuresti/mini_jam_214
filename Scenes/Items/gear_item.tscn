@@ -4,20 +4,19 @@
 [ext_resource type="Texture2D" uid="uid://24bv2iksrdfi" path="res://Assets/sprites.png" id="2_ud8qy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6ga5c"]
-radius = 32.9848
+radius = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kj02d"]
-radius = 32.0
+radius = 16.0
 
 [node name="GearItem" instance=ExtResource("1_koha3")]
 points = 10
-item_type = "Gear"
+item_type = "gear"
 
 [node name="Sprite2D" parent="." index="0"]
-scale = Vector2(2, 2)
 texture = ExtResource("2_ud8qy")
-hframes = 8
-vframes = 11
+hframes = 9
+vframes = 6
 
 [node name="CollisionShape2D" parent="GrabBox" index="0"]
 shape = SubResource("CircleShape2D_6ga5c")

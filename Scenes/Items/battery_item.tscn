@@ -1,13 +1,21 @@
 [gd_scene load_steps=3 format=3 uid="uid://c41irqex016gn"]
 
 [ext_resource type="PackedScene" uid="uid://dnbrkwt8mctmj" path="res://Scenes/Items/item.tscn" id="1_7ajt2"]
-[ext_resource type="Texture2D" uid="uid://5ljh3hnq65l" path="res://Assets/Calico_Cat_Paw_Asset_.png" id="2_ahyr3"]
+[ext_resource type="Texture2D" uid="uid://24bv2iksrdfi" path="res://Assets/sprites.png" id="2_ahyr3"]
 
 [node name="BatteryItem" instance=ExtResource("1_7ajt2")]
 points = 10
 energy = 10
-item_type = "Battery"
+item_type = "battery"
 
 [node name="Sprite2D" parent="." index="0"]
-scale = Vector2(1.9375, 1.9375)
 texture = ExtResource("2_ahyr3")
+hframes = 8
+vframes = 4
+frame = 6
+
+[node name="CollisionShape2D" parent="GrabBox" index="0"]
+position = Vector2(0, 1.5)
+
+[node name="PhysicsCollisionShape" parent="." index="2"]
+position = Vector2(0, 1.5)

@@ -1,6 +1,6 @@
 extends Control
 
-@onready var score_label = $Top_Row_UI/Score
+@onready var score_label = $Score
 @onready var energy_bar = $EnergyBar
 @onready var requirements_label = $Level_Requirements/Label
 

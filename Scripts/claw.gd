@@ -29,7 +29,7 @@ func _physics_process(_delta: float) -> void:
 		claw_hit_box.monitoring = true
 	
 	# If the claw is not current grabbing allow input
-	if not is_grabbing:
+	if not is_grabbing and Globals.game_state == "READY":
 		# If the claw is holding an item, release it
 		# If the claw is empty, then perform a grab
 		if Input.is_action_just_pressed("activate"):

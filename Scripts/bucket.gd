@@ -9,7 +9,7 @@ func _on_score_zone_area_entered(area: Area2D) -> void:
 		
 		# If the item has been in the bucket for one second, score it
 		# This prevents items from being scored if they bounce out
-		await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(0.25).timeout
 		
 		if area == detected_item:
 			# Call the item's captured() function

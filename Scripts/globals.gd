@@ -4,6 +4,9 @@ extends Node2D
 var PIN_JOINT : PinJoint2D
 var CLAW : StaticBody2D
 
+# (LOADING, READY)
+var game_state = "LOADING"
+
 # The currently held item
 var grabbed_item : RigidBody2D
 
@@ -14,12 +17,16 @@ var score_label = null
 
 var HUD
 var level = 1
-var required_level_items
+var required_level_items = {}
 var current_captured_items = {
 	"screw": 0,
 	"battery": 0,
 	"gear": 0,
-	"broken": 0
+	"bomb": 0,
+	"crate": 0,
+	"golden gear": 0,
+	"hex nut": 0,
+	"wheel": 0
 }
 
 # Update player energy, score, score label, items captured
@@ -29,6 +36,7 @@ func player_captured_item(points_value: int, energy_value: int, item_type: Strin
 	if score_label:
 		score_label.text = "Score: %d" % points
 	
+	# Increment captured items
 	current_captured_items[item_type] += 1
 	
 	# Update HUD to show new values
@@ -36,12 +44,12 @@ func player_captured_item(points_value: int, energy_value: int, item_type: Strin
 	
 	# Check if the level is complete
 	if check_if_level_complete():
-		print("Transition to next level")
+		print("You beat the level!")
 
 # Check if the player has captured all the required items
 func check_if_level_complete() -> bool:
 	for item in required_level_items:
-		if current_captured_items[item] != required_level_items[item]:
+		if current_captured_items[item] < required_level_items[item]:
 			return false
 	return true
 

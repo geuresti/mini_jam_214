@@ -1,25 +1,30 @@
 [gd_scene load_steps=5 format=3 uid="uid://d2vahky23k64x"]
 
 [ext_resource type="PackedScene" uid="uid://dnbrkwt8mctmj" path="res://Scenes/Items/item.tscn" id="1_dwfcs"]
-[ext_resource type="Texture2D" uid="uid://cnsvsudusxhpt" path="res://Assets/calico_cat.png" id="2_0ait3"]
+[ext_resource type="Texture2D" uid="uid://24bv2iksrdfi" path="res://Assets/sprites.png" id="2_0ait3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0ait3"]
-radius = 28.0
+radius = 17.0294
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jsala"]
-radius = 27.0185
+radius = 17.0
 
-[node name="BrokenItem" instance=ExtResource("1_dwfcs")]
+[node name="BombItem" instance=ExtResource("1_dwfcs")]
 energy = -15
-item_type = "Broken"
+item_type = "bomb"
 
 [node name="Sprite2D" parent="." index="0"]
-position = Vector2(-1, 1)
-scale = Vector2(2, 2)
+position = Vector2(-2, 0)
+scale = Vector2(1, 1)
 texture = ExtResource("2_0ait3")
+hframes = 8
+vframes = 4
+frame = 7
 
 [node name="CollisionShape2D" parent="GrabBox" index="0"]
+position = Vector2(-2, 8)
 shape = SubResource("CircleShape2D_0ait3")
 
 [node name="PhysicsCollisionShape" parent="." index="2"]
+position = Vector2(-2, 9)
 shape = SubResource("CircleShape2D_jsala")

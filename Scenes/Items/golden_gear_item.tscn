@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm7hilwuamw1x"]
+
+[ext_resource type="PackedScene" uid="uid://dnbrkwt8mctmj" path="res://Scenes/Items/item.tscn" id="1_g14cs"]
+[ext_resource type="Texture2D" uid="uid://24bv2iksrdfi" path="res://Assets/sprites.png" id="2_7hja7"]
+
+[node name="GoldenGearItem" instance=ExtResource("1_g14cs")]
+points = 15
+energy = 5
+item_type = "golden gear"
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(1, 1)
+texture = ExtResource("2_7hja7")
+hframes = 9
+vframes = 6
+frame = 1

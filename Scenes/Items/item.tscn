@@ -4,16 +4,15 @@
 [ext_resource type="Texture2D" uid="uid://bknma0q766xio" path="res://Assets/icon.svg" id="1_ys0gr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_76mu4"]
-size = Vector2(64, 64)
+size = Vector2(32, 45)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u06aw"]
-size = Vector2(64, 64)
+size = Vector2(32, 45)
 
 [node name="Item" type="RigidBody2D"]
 script = ExtResource("1_76mu4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_ys0gr")
 
 [node name="GrabBox" type="Area2D" parent="." groups=["Item"]]

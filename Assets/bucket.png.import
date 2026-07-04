@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1mm2v8utkhbg"
-path="res://.godot/imported/Orange_Cat_Paw_Asset.png-8e25093a2d03da6fca7eca308b674c1d.ctex"
+uid="uid://dfxu13wriqs1x"
+path="res://.godot/imported/bucket.png-146eb2a516f0943bc12837f7667f11d2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Orange_Cat_Paw_Asset.png"
-dest_files=["res://.godot/imported/Orange_Cat_Paw_Asset.png-8e25093a2d03da6fca7eca308b674c1d.ctex"]
+source_file="res://Assets/bucket.png"
+dest_files=["res://.godot/imported/bucket.png-146eb2a516f0943bc12837f7667f11d2.ctex"]
 
 [params]
 

@@ -6,11 +6,15 @@ extends RigidBody2D
 # This variables will vary by sub class (Ex: gear, screw, etc.)
 @export var points = 5
 @export var energy = 0
-#@export var sprite_texture : Texture2D = preload("res://Assets/icon.svg")
-@export var item_type = "Item"
+@export var item_type = "item"
  
 var is_grabbed : bool = false
 var follow_claw : bool = false
+
+func _ready() -> void:
+	$Sprite2D.scale = Vector2(2, 2)
+	$GrabBox.scale = Vector2(2, 2)
+	$PhysicsCollisionShape.scale = Vector2(2, 2)
 
 # Follow the claw as it retracts upwards after a grab
 func _process(_delta: float) -> void:
