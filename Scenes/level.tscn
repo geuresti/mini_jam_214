@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bmjjh3u0opv67" path="res://Assets/blank_button_pressed.png" id="4_754fn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81xng"]
-size = Vector2(730, 70)
+size = Vector2(730, 120)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k5f4k"]
 size = Vector2(1154, 20)
@@ -24,39 +24,8 @@ script = ExtResource("1_0f350")
 
 [node name="HUD" parent="HUD_Container" instance=ExtResource("1_wqkje")]
 
-[node name="GameOverUI" type="Control" parent="HUD_Container"]
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="HUD_Container/GameOverUI"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.196078, 0.196078, 0.196078, 0.756863)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD_Container/GameOverUI"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureButton" type="TextureButton" parent="HUD_Container/GameOverUI/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-texture_normal = ExtResource("3_8c0lf")
-texture_pressed = ExtResource("4_754fn")
-
 [node name="Transition" type="Control" parent="HUD_Container"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -91,22 +60,99 @@ text = "Level 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="GameOverUI" type="Control" parent="HUD_Container"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="HUD_Container/GameOverUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.196078, 0.196078, 0.196078, 0.756863)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD_Container/GameOverUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.389
+anchor_top = 0.265
+anchor_right = 0.611
+anchor_bottom = 0.639
+offset_left = -0.128021
+offset_top = 55.28
+offset_right = 0.127991
+offset_bottom = -55.0721
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="GameOverLabel" type="Label" parent="HUD_Container/GameOverUI/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="HUD_Container/GameOverUI/VBoxContainer"]
+layout_mode = 2
+
+[node name="FinalLevel" type="Label" parent="HUD_Container/GameOverUI/VBoxContainer"]
+layout_mode = 2
+text = "You reached level 0"
+horizontal_alignment = 1
+
+[node name="FinalScore" type="Label" parent="HUD_Container/GameOverUI/VBoxContainer"]
+layout_mode = 2
+text = "Final Score: 0"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="HUD_Container/GameOverUI/VBoxContainer"]
+layout_mode = 2
+
+[node name="MainMenuButton" type="TextureButton" parent="HUD_Container/GameOverUI/VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("3_8c0lf")
+texture_pressed = ExtResource("4_754fn")
+stretch_mode = 0
+
+[node name="MainMenuButtonText" type="Label" parent="HUD_Container/GameOverUI/VBoxContainer/MainMenuButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06
+anchor_top = 0.06
+anchor_right = 0.94
+anchor_bottom = 0.6
+offset_left = -1.0
+offset_right = -1.0
+text = "Main Menu"
+horizontal_alignment = 1
+
 [node name="Background" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.301961)
 offset_right = 1152.0
 offset_bottom = 653.0
 texture = ExtResource("2_wqkje")
+metadata/_edit_lock_ = true
 
 [node name="Claw" parent="." instance=ExtResource("1_tumq0")]
 position = Vector2(542, 82)
 
 [node name="ItemSpawnArea" type="Area2D" parent="."]
-position = Vector2(725, 307)
+position = Vector2(725, 224)
 monitoring = false
 monitorable = false
 
 [node name="ItemSpawnAreaShape" type="CollisionShape2D" parent="ItemSpawnArea"]
-position = Vector2(0, 3)
+position = Vector2(0, 28)
 shape = SubResource("RectangleShape2D_81xng")
 
 [node name="ItemManager" type="Node2D" parent="ItemSpawnArea"]
@@ -141,3 +187,5 @@ position = Vector2(1163, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
 position = Vector2(-10, 328)
 shape = SubResource("RectangleShape2D_6phgx")
+
+[connection signal="pressed" from="HUD_Container/GameOverUI/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

@@ -1,6 +1,7 @@
 extends Node2D
 
 signal next_level
+signal game_over(level, score)
 
 # Placing these here allows the claw.gd and item.gd scripts to communicate
 var PIN_JOINT : PinJoint2D
@@ -15,10 +16,12 @@ var grabbed_item : RigidBody2D
 var max_energy = 100
 var energy
 var drain_rate = 1.0
-var GRAB_ENERGY_COST = -8
+var GRAB_ENERGY_COST = -6
 
-var points = 0
-var score_label = null
+var MIN_ITEMS_SPAWN = 10
+var MIN_REQUIRED_ITEMS = 2
+
+var score = 0
 
 var HUD
 var level = 1
@@ -32,18 +35,20 @@ func _ready() -> void:
 	energy = max_energy
 
 func _process(_delta) -> void:
-	if energy <= 0:
-		print("You lose!!!!")
+	# Enter game over state whhen the player's energy reaches 0
+	if game_state != "GAME OVER" and energy <= 0:
+		game_state = "GAME OVER"
+		emit_signal("game_over", level, score)
 
 # Update player energy, score, score label, items captured
 func player_captured_item(points_value: int, energy_value: int, item_type: String) -> void:
-	points += points_value
+	score += points_value
 	
 	# Instruct the HUD to update energy and the energy progress bar
 	update_energy_helper(energy_value)
 	
 	# Update the score label to show the new point value
-	update_score_label()
+	update_score_label_helper(score - points_value)
 	
 	# Increment captured items
 	current_captured_items[item_type] += 1
@@ -56,9 +61,7 @@ func player_captured_item(points_value: int, energy_value: int, item_type: Strin
 		await get_tree().create_timer(1).timeout
 		next_level_transition()
 
-func update_score_label() -> void:
-	if score_label:
-		score_label.text = "Score: %d" % points
+func update_score_label_helper(prev_score) -> void: HUD.update_score_label(prev_score)
 
 # Check if the player has captured all the required items
 func check_if_level_complete() -> bool:
@@ -85,6 +88,7 @@ func next_level_transition() -> void:
 	drain_rate += 0.25
 	
 	# This signals the level.gd script to trigger a level reset function
+	game_state = "LOADING"
 	emit_signal("next_level") 
 	
 	# Reset required and captured items 
@@ -116,4 +120,4 @@ func reset_current_captured_items() -> void:
 	}
 
 # Instruct the HUD to update energy and the energy progress bar
-func update_energy_helper(energy) -> void: HUD.animate_energy_change(energy)
+func update_energy_helper(energy_value) -> void: HUD.animate_energy_change(energy_value)

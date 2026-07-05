@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var level_floor = $Floor
 @onready var HUD = $HUD_Container/HUD
-
+@onready var game_over_UI = $HUD_Container/GameOverUI
 @onready var level_count_label = $HUD_Container/Transition/LevelCount
 @onready var transition_screen = $HUD_Container/Transition
 
@@ -22,24 +22,23 @@ extends Node2D
 	"bomb": preload("res://Scenes/Items/bomb_item.tscn"),
 }
 
+var SPAWN_DELAY = 0.15
+
 # Track which items NEED to spawn to meet level requirements
 var required_items_to_spawn = []
 
-# How many items will fill the claw machine at minium
-var MIN_ITEMS_SPAWN = 4
-
-# How many items are required to pass the level minimum
-var min_required_items = 2
-
 func _ready() -> void:
 	Globals.connect("next_level", _next_level_handler)
+	Globals.connect("game_over", _game_over_handler)
 	#level_floor.rotate(0.43)
-	
+	game_over_UI.visible = false
 	# Update the level count and play transition effect
 	level_count_label.text = "Level: %d" % Globals.level
 	transition_screen.visible = true
-	await get_tree().create_timer(1).timeout
-	await fade_in_out(true, 1)
+	level_count_label.modulate = "ffffff00"
+	await fade_in_out(level_count_label, false, 1)
+	#await get_tree().create_timer(1).timeout
+	await fade_in_out(transition_screen, true, 1)
 	
 	# Generate the level requirements and spawn item
 	generate_level_requirements()
@@ -47,14 +46,25 @@ func _ready() -> void:
 
 # Reset the level when this script receives the "next_level" signal
 func _next_level_handler():
+	level_count_label.visible = false
+	transition_screen.visible = true
+	await fade_in_out(transition_screen, false, 1)
 	get_tree().reload_current_scene()
+
+# Fade in the "Game Over" UI
+func _game_over_handler(level, score) -> void:
+	$HUD_Container/GameOverUI/VBoxContainer/FinalLevel.text = "You reached level %d" % level
+	$HUD_Container/GameOverUI/VBoxContainer/FinalScore.text = "Final Score: %d" % score
+	game_over_UI.modulate = "ffffff00"
+	game_over_UI.visible = true
+	fade_in_out(game_over_UI, false, 1.5)
 
 # Generate a random set of required items to beat the level
 func generate_level_requirements() -> void:
 	var random_item
 	
 	# Scale the required items by the level value
-	for i in (min_required_items + Globals.level):
+	for i in (Globals.MIN_REQUIRED_ITEMS + Globals.level):
 		random_item = preloaded_items.keys().pick_random()
 		# Avoid picking a bomb / energy bar as a required item
 		while random_item == "bomb" or random_item == "energy bar":
@@ -78,19 +88,19 @@ func spawn_random_items():
 		new_item = preloaded_items[item].instantiate()
 		new_item.position = random_pos
 		item_manager.add_child(new_item)
-		#new_item.scale = Vector2(1.5, 1.5)
-		await get_tree().create_timer(0.25).timeout
+		new_item.scale = Vector2(1.25, 1.25)
+		await get_tree().create_timer(SPAWN_DELAY).timeout
 	
 	# Then spawn the other randomized items
-	for i in (MIN_ITEMS_SPAWN + Globals.level - len(required_items_to_spawn)):
+	for i in (Globals.MIN_ITEMS_SPAWN + Globals.level - len(required_items_to_spawn)):
 		random_pos = get_random_spawn()
 		random_item = preloaded_items.keys().pick_random()
 		new_item = preloaded_items[random_item].instantiate()
 		new_item.position = random_pos
 		
 		item_manager.add_child(new_item)
-		#new_item.scale = Vector2(1.5, 1.5)
-		await get_tree().create_timer(0.25).timeout
+		new_item.scale = Vector2(1.25, 1.25)
+		await get_tree().create_timer(SPAWN_DELAY).timeout
 	
 	Globals.game_state = "READY"
 
@@ -108,11 +118,15 @@ func get_random_spawn() -> Vector2:
 	return pos 
 
 # Fade effect for entering / leaving the scene
-func fade_in_out(fade_in: bool, duration: float) -> bool:
+func fade_in_out(fade_item: Control, fade_in: bool, duration: float) -> bool:
 	var tween = create_tween()
 	if fade_in:
-		tween.tween_property(transition_screen, "modulate:a", 0, duration)
+		tween.tween_property(fade_item, "modulate:a", 0, duration)
 	else:
-		tween.tween_property(transition_screen, "modulate:a", 1, duration)
+		tween.tween_property(fade_item, "modulate:a", 1, duration)
 	await tween.finished
 	return true
+
+# WIP
+func _on_main_menu_button_pressed() -> void:
+	print("Main Menu Button Pressed")
