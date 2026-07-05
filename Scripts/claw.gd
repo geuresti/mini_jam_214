@@ -56,6 +56,7 @@ func _physics_process(_delta: float) -> void:
 				if holding_item:
 					claw_release()
 				else:
+					Globals.update_energy_helper(Globals.GRAB_ENERGY_COST)
 					claw_grab()
 		# Claw left / right movement
 		else:

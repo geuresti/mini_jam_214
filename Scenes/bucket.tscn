@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://oo8fgpx34kmi"]
+[gd_scene load_steps=9 format=3 uid="uid://oo8fgpx34kmi"]
 
 [ext_resource type="Script" uid="uid://du8ojcffubmhm" path="res://Scripts/bucket.gd" id="1_b0qqc"]
 [ext_resource type="Texture2D" uid="uid://dfxu13wriqs1x" path="res://Assets/bucket.png" id="2_dco0c"]
@@ -17,6 +17,9 @@ size = Vector2(59, 34)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7pcy1"]
 size = Vector2(100, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e41ff"]
+size = Vector2(3, 76)
 
 [node name="Bucket" type="Node2D"]
 script = ExtResource("1_b0qqc")
@@ -66,6 +69,12 @@ shape = SubResource("RectangleShape2D_fl0yo")
 position = Vector2(48, -77)
 shape = SubResource("RectangleShape2D_7pcy1")
 debug_color = Color(0.813539, 0.00203189, 0.979641, 0.42)
+
+[node name="BucketRightBoundary" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BucketRightBoundary"]
+position = Vector2(95.5, -38)
+shape = SubResource("RectangleShape2D_e41ff")
 
 [connection signal="area_entered" from="ScoreZone" to="." method="_on_score_zone_area_entered"]
 [connection signal="area_exited" from="ScoreZone" to="." method="_on_score_zone_area_exited"]

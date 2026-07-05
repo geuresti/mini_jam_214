@@ -2,7 +2,9 @@ extends Node2D
 
 @onready var level_floor = $Floor
 @onready var HUD = $HUD_Container/HUD
-@onready var scene_transition = $HUD_Container/SceneTransition
+
+@onready var level_count_label = $HUD_Container/Transition/LevelCount
+@onready var transition_screen = $HUD_Container/Transition
 
 @onready var item_spawn_area = $ItemSpawnArea
 @onready var item_spawn_area_shape = $ItemSpawnArea/ItemSpawnAreaShape
@@ -24,17 +26,28 @@ extends Node2D
 var required_items_to_spawn = []
 
 # How many items will fill the claw machine at minium
-var MIN_ITEMS_SPAWN = 8
+var MIN_ITEMS_SPAWN = 4
 
 # How many items are required to pass the level minimum
 var min_required_items = 2
 
 func _ready() -> void:
+	Globals.connect("next_level", _next_level_handler)
 	#level_floor.rotate(0.43)
-	scene_transition.visible = true
-	await fade_in_out(true)
+	
+	# Update the level count and play transition effect
+	level_count_label.text = "Level: %d" % Globals.level
+	transition_screen.visible = true
+	await get_tree().create_timer(1).timeout
+	await fade_in_out(true, 1)
+	
+	# Generate the level requirements and spawn item
 	generate_level_requirements()
 	spawn_random_items()
+
+# Reset the level when this script receives the "next_level" signal
+func _next_level_handler():
+	get_tree().reload_current_scene()
 
 # Generate a random set of required items to beat the level
 func generate_level_requirements() -> void:
@@ -95,11 +108,11 @@ func get_random_spawn() -> Vector2:
 	return pos 
 
 # Fade effect for entering / leaving the scene
-func fade_in_out(fade_in : bool) -> bool:
+func fade_in_out(fade_in: bool, duration: float) -> bool:
 	var tween = create_tween()
 	if fade_in:
-		tween.tween_property(scene_transition, "modulate:a", 0, 0.5)
+		tween.tween_property(transition_screen, "modulate:a", 0, duration)
 	else:
-		tween.tween_property(scene_transition, "modulate:a", 1, 0.5)
+		tween.tween_property(transition_screen, "modulate:a", 1, duration)
 	await tween.finished
 	return true
