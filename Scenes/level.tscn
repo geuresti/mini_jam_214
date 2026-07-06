@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://b58bvdfgl50jo" path="res://Scenes/HUD.tscn" id="1_wqkje"]
 [ext_resource type="Texture2D" uid="uid://da18lnvit7hdl" path="res://Assets/background.png" id="2_wqkje"]
 [ext_resource type="PackedScene" uid="uid://oo8fgpx34kmi" path="res://Scenes/bucket.tscn" id="3_6phgx"]
-[ext_resource type="Texture2D" uid="uid://cm532s7cwy3xy" path="res://Assets/blank_button.png" id="3_8c0lf"]
 [ext_resource type="FontFile" uid="uid://mps0qq8u0o70" path="res://Assets/MINECRAFT.TTF" id="3_crh0w"]
-[ext_resource type="Texture2D" uid="uid://bmjjh3u0opv67" path="res://Assets/blank_button_pressed.png" id="4_754fn"]
+[ext_resource type="Texture2D" uid="uid://dt2nuso4e5jgt" path="res://Assets/exit_button_neutral.png" id="4_crh0w"]
+[ext_resource type="Texture2D" uid="uid://cwl4f6es3kjsd" path="res://Assets/exit_button_pressed.png" id="5_c7le1"]
 [ext_resource type="Script" uid="uid://bqk7bo457rxyr" path="res://Scripts/sound_container.gd" id="8_754fn"]
 [ext_resource type="AudioStream" uid="uid://c37wl7clxbcpj" path="res://Assets/Sounds/Mini Jam 214 - One More Time - Soundtrack.wav" id="9_bvt00"]
 [ext_resource type="AudioStream" uid="uid://nyk0at028ack" path="res://Assets/Sounds/ItemFallIntoBox.wav" id="10_oqgf2"]
@@ -131,21 +131,9 @@ theme_override_fonts/font = ExtResource("3_crh0w")
 custom_minimum_size = Vector2(110, 50)
 layout_mode = 2
 size_flags_horizontal = 4
-texture_normal = ExtResource("3_8c0lf")
-texture_pressed = ExtResource("4_754fn")
+texture_normal = ExtResource("4_crh0w")
+texture_pressed = ExtResource("5_c7le1")
 stretch_mode = 0
-
-[node name="MainMenuButtonText" type="Label" parent="HUD_Container/GameOverUI/VBoxContainer/MainMenuButton"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.05
-anchor_top = 0.14
-anchor_right = 0.94
-anchor_bottom = 0.5
-offset_right = 3.0
-theme_override_fonts/font = ExtResource("3_crh0w")
-text = "Main Menu"
-horizontal_alignment = 1
 
 [node name="Background" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.301961)
@@ -219,7 +207,7 @@ volume_db = -5.0
 
 [node name="ClawMoving" type="AudioStreamPlayer" parent="SoundController"]
 stream = ExtResource("12_ha31o")
-volume_db = -20.0
+volume_db = -26.0
 autoplay = true
 
 [node name="ItemSpawn" type="AudioStreamPlayer" parent="SoundController"]

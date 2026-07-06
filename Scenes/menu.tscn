@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dtj8u1mi1xc2a"]
+[gd_scene load_steps=19 format=3 uid="uid://dtj8u1mi1xc2a"]
 
 [ext_resource type="Texture2D" uid="uid://o808cuk25jws" path="res://Assets/Logo 2.png" id="1_jsrd8"]
 [ext_resource type="Script" uid="uid://dfpgxag2c8ktj" path="res://Scripts/menu.gd" id="1_q3rjx"]
@@ -16,18 +16,43 @@
 [ext_resource type="AudioStream" uid="uid://c37wl7clxbcpj" path="res://Assets/Sounds/Mini Jam 214 - One More Time - Soundtrack.wav" id="14_5ti5v"]
 [ext_resource type="AudioStream" uid="uid://bn6cq5cvr7swd" path="res://Assets/Sounds/ButtonClick_02.wav" id="15_1by5w"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5ti5v"]
+[sub_resource type="Animation" id="Animation_5ti5v"]
+resource_name = "menu_animation"
+length = 4.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3, 4.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -20), Vector2(0, 20), Vector2(0, 0)]
+}
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1by5w"]
+[sub_resource type="Animation" id="Animation_1by5w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kmwmt"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rc6uw"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_23t3j"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_bottom = 4
-border_color = Color(1, 1, 1, 1)
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kmwmt"]
+_data = {
+&"RESET": SubResource("Animation_1by5w"),
+&"menu_animation": SubResource("Animation_5ti5v")
+}
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -58,9 +83,9 @@ metadata/_edit_lock_ = true
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 0
 offset_left = 496.0
-offset_top = 320.0
+offset_top = 331.0
 offset_right = 656.0
-offset_bottom = 400.0
+offset_bottom = 411.0
 texture_normal = ExtResource("2_wbdvm")
 texture_pressed = ExtResource("3_q3rjx")
 stretch_mode = 0
@@ -69,27 +94,12 @@ stretch_mode = 0
 custom_minimum_size = Vector2(160, 80)
 layout_mode = 0
 offset_left = 496.0
-offset_top = 424.0
+offset_top = 435.0
 offset_right = 656.0
-offset_bottom = 504.0
+offset_bottom = 515.0
 texture_normal = ExtResource("4_6swd7")
 texture_pressed = ExtResource("5_7qvly")
 stretch_mode = 0
-
-[node name="TutorialButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 520.0
-offset_top = 526.0
-offset_right = 632.0
-offset_bottom = 566.0
-theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("6_rfqti")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_5ti5v")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_1by5w")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_kmwmt")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_rc6uw")
-theme_override_styles/normal = SubResource("StyleBoxFlat_23t3j")
-text = "How to Play"
 
 [node name="SpriteContainer" type="Control" parent="."]
 anchors_preset = 0
@@ -132,6 +142,11 @@ rotation = 0.150995
 scale = Vector2(3, 3)
 texture = ExtResource("12_kmwmt")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SpriteContainer"]
+libraries = {
+&"": SubResource("AnimationLibrary_kmwmt")
+}
+
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_left = 16.0
@@ -153,4 +168,3 @@ volume_db = -5.0
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="pressed" from="TutorialButton" to="." method="_on_tutorial_button_pressed"]
