@@ -1,8 +1,13 @@
 extends CharacterBody2D
 
-@export var move_speed = 250
+signal play_claw_grab_sound
+signal play_claw_moving_sound
+signal stop_claw_moving_sound
+
 @onready var claw_part = $ClawPart
 @onready var claw_hit_box = $ClawPart/ClawHitBox
+@onready var claw_hit_box_shape = $ClawPart/ClawHitBox/CollisionShape2D
+@onready var claw_body_collision_shape = $CollisionShape2D
 @onready var pin_joint = $ClawPart/ClawCollisionShape/PinJoint2D
 
 @onready var claw_sprite = $ClawPart/ClawSprite
@@ -23,6 +28,7 @@ var is_retracting = false
 var holding_item = false
 var is_releasing = false
 
+var move_speed = 300
 var GRAB_COOLDOWN = 1
 var CLAW_GRAB_SPEED = 10
 
@@ -44,8 +50,12 @@ func _physics_process(_delta: float) -> void:
 	# this prevents items from getting stuck floating in the air
 	if holding_item or is_releasing:
 		claw_hit_box.monitoring = false
+		claw_hit_box_shape.disabled = true
+		claw_body_collision_shape.disabled = true
 	else:
 		claw_hit_box.monitoring = true
+		claw_hit_box_shape.disabled = false
+		claw_body_collision_shape.disabled = false
 	
 	# If the claw is not current grabbing allow input
 	if not is_grabbing and Globals.game_state == "READY":
@@ -62,6 +72,12 @@ func _physics_process(_delta: float) -> void:
 		else:
 			get_input()
 			move_and_slide()
+			
+			# Signal to play a sound effect while the claw is moving
+			if velocity.x != 0:
+				emit_signal("play_claw_moving_sound")
+			else:
+				emit_signal("stop_claw_moving_sound")
 
 # Up and Down are unused (Need to fix)
 func get_input() -> void:
@@ -122,9 +138,11 @@ func retract_claw() -> bool:
 
 # An area overlapped with the claw's hitbox (either an Item or a Strcture)
 func _on_claw_hit_box_area_entered(area: Area2D) -> void:
-	if not holding_item:
+	if not holding_item and is_lowering:
 		if area.is_in_group("Item"):
 			holding_item = true
+			# Signal for grabbing sound effect
+			emit_signal("play_claw_grab_sound")
 			claw_sprite.texture = closed_hand_texture
 		is_lowering = false
 		

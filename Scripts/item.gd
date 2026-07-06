@@ -1,5 +1,15 @@
 extends RigidBody2D
 
+@onready var item_impact_player = $ItemImpact
+
+var item_impact_sounds = [
+	preload("res://Assets/Sounds/Fall_01.wav"),
+	preload("res://Assets/Sounds/Fall_02.wav"),
+	preload("res://Assets/Sounds/Fall_03.wav"),
+	preload("res://Assets/Sounds/Fall_04.wav"),
+	preload("res://Assets/Sounds/Fall_Best.wav")
+]
+
 # The hitbox for the claw to detect
 @onready var grab_box = $GrabBox
 
@@ -45,5 +55,9 @@ func released_by_claw() -> void:
 
 # Triggered when an item makes it into the bucket (this is called by bucket.gd)
 func captured() -> void:
-	Globals.player_captured_item(points, energy, item_type)
+	await Globals.player_captured_item(points, energy, item_type)
 	queue_free()
+
+func _on_body_entered(body: Node) -> void:
+	item_impact_player.stream = item_impact_sounds.pick_random()
+	item_impact_player.play()

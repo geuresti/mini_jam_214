@@ -10,7 +10,7 @@ size = Vector2(58, 17)
 size = Vector2(58, 17)
 
 [node name="EnergyBarItem" instance=ExtResource("1_wk7tf")]
-energy = 15
+energy = 18
 item_type = "energy bar"
 
 [node name="Sprite2D" parent="." index="0"]

@@ -1,5 +1,9 @@
 extends Node2D
 
+signal play_item_spawn_sound
+signal level_transition
+signal play_button_pressed_sound
+
 @onready var level_floor = $Floor
 @onready var HUD = $HUD_Container/HUD
 @onready var game_over_UI = $HUD_Container/GameOverUI
@@ -9,6 +13,8 @@ extends Node2D
 @onready var item_spawn_area = $ItemSpawnArea
 @onready var item_spawn_area_shape = $ItemSpawnArea/ItemSpawnAreaShape
 @onready var item_manager = $ItemSpawnArea/ItemManager
+
+@onready var sound_controller = $SoundController
 
 @onready var preloaded_items = {
 	"screw": preload("res://Scenes/Items/screw_item.tscn"),
@@ -28,6 +34,15 @@ var SPAWN_DELAY = 0.15
 var required_items_to_spawn = []
 
 func _ready() -> void:
+	# Connect audio signals to SoundContoller handlers
+	$Claw.play_claw_grab_sound.connect(sound_controller._play_claw_grab_sound)
+	$Claw.play_claw_moving_sound.connect(sound_controller._play_claw_moving_sound)
+	$Claw.stop_claw_moving_sound.connect(sound_controller._stop_claw_moving_sound)
+	play_item_spawn_sound.connect(sound_controller._play_item_spawn_sound)
+	level_transition.connect(sound_controller._play_item_captured_sound)
+	play_button_pressed_sound.connect(sound_controller._play_button_pressed_sound)
+	Globals.play_item_captured_sound.connect(sound_controller._play_item_captured_sound)
+	
 	Globals.connect("next_level", _next_level_handler)
 	Globals.connect("game_over", _game_over_handler)
 	#level_floor.rotate(0.43)
@@ -48,6 +63,7 @@ func _ready() -> void:
 func _next_level_handler():
 	level_count_label.visible = false
 	transition_screen.visible = true
+	emit_signal("level_transition")
 	await fade_in_out(transition_screen, false, 1)
 	get_tree().reload_current_scene()
 
@@ -89,6 +105,7 @@ func spawn_random_items():
 		new_item.position = random_pos
 		item_manager.add_child(new_item)
 		new_item.scale = Vector2(1.25, 1.25)
+		emit_signal("play_item_spawn_sound")
 		await get_tree().create_timer(SPAWN_DELAY).timeout
 	
 	# Then spawn the other randomized items
@@ -100,6 +117,7 @@ func spawn_random_items():
 		
 		item_manager.add_child(new_item)
 		new_item.scale = Vector2(1.25, 1.25)
+		emit_signal("play_item_spawn_sound")
 		await get_tree().create_timer(SPAWN_DELAY).timeout
 	
 	Globals.game_state = "READY"
@@ -130,3 +148,6 @@ func fade_in_out(fade_item: Control, fade_in: bool, duration: float) -> bool:
 # WIP
 func _on_main_menu_button_pressed() -> void:
 	print("Main Menu Button Pressed")
+	emit_signal("play_button_pressed_sound")
+	await get_tree().create_timer(0.5).timeout
+	

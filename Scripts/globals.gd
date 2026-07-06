@@ -3,6 +3,8 @@ extends Node2D
 signal next_level
 signal game_over(level, score)
 
+signal play_item_captured_sound
+
 # Placing these here allows the claw.gd and item.gd scripts to communicate
 var PIN_JOINT : PinJoint2D
 var CLAW : StaticBody2D
@@ -41,8 +43,10 @@ func _process(_delta) -> void:
 		emit_signal("game_over", level, score)
 
 # Update player energy, score, score label, items captured
-func player_captured_item(points_value: int, energy_value: int, item_type: String) -> void:
+func player_captured_item(points_value: int, energy_value: int, item_type: String) -> bool:
 	score += points_value
+	
+	emit_signal("play_item_captured_sound")
 	
 	# Instruct the HUD to update energy and the energy progress bar
 	update_energy_helper(energy_value)
@@ -60,6 +64,8 @@ func player_captured_item(points_value: int, energy_value: int, item_type: Strin
 	if check_if_level_complete():
 		await get_tree().create_timer(1).timeout
 		next_level_transition()
+	
+	return true
 
 func update_score_label_helper(prev_score) -> void: HUD.update_score_label(prev_score)
 

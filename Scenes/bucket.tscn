@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dfxu13wriqs1x" path="res://Assets/bucket.png" id="2_dco0c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hgwrd"]
-size = Vector2(61, 4.5)
+size = Vector2(77, 4.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b0qqc"]
 size = Vector2(4.42443, 75.1862)
@@ -13,7 +13,7 @@ size = Vector2(4.42443, 75.1862)
 size = Vector2(4, 75.0634)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fl0yo"]
-size = Vector2(59, 34)
+size = Vector2(81, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7pcy1"]
 size = Vector2(100, 2)
@@ -39,7 +39,7 @@ texture = ExtResource("2_dco0c")
 position = Vector2(17, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BucketFloor"]
-position = Vector2(30.5, -1.75)
+position = Vector2(30.5, -40.75)
 shape = SubResource("RectangleShape2D_hgwrd")
 
 [node name="BucketLeftWall" type="StaticBody2D" parent="."]
@@ -60,7 +60,7 @@ shape = SubResource("RectangleShape2D_dco0c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreZone"]
 modulate = Color(1, 0.388001, 0.576384, 1)
-position = Vector2(47.5, -19)
+position = Vector2(47.5, -55)
 shape = SubResource("RectangleShape2D_fl0yo")
 
 [node name="ClawBoundary" type="Area2D" parent="." groups=["Structure"]]

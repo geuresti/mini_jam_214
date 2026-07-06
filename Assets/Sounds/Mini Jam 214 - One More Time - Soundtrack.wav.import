@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c37wl7clxbcpj"
+path="res://.godot/imported/Mini Jam 214 - One More Time - Soundtrack.wav-a5d1b828f7e3c78b6907c9cf89e88adf.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/Mini Jam 214 - One More Time - Soundtrack.wav"
+dest_files=["res://.godot/imported/Mini Jam 214 - One More Time - Soundtrack.wav-a5d1b828f7e3c78b6907c9cf89e88adf.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
