@@ -15,7 +15,7 @@ var game_state = "LOADING"
 # The currently held item
 var grabbed_item : RigidBody2D
 
-var max_energy = 10
+var max_energy = 100
 var energy
 var drain_rate = 1.0
 var GRAB_ENERGY_COST = -8
