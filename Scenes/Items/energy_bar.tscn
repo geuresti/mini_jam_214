@@ -1,32 +1,27 @@
 [gd_scene load_steps=5 format=3 uid="uid://dly38gbti6b7f"]
 
 [ext_resource type="PackedScene" uid="uid://dnbrkwt8mctmj" path="res://Scenes/Items/item.tscn" id="1_wk7tf"]
-[ext_resource type="Texture2D" uid="uid://24bv2iksrdfi" path="res://Assets/sprites.png" id="2_rtbej"]
+[ext_resource type="Texture2D" uid="uid://b1wy1str6kqmf" path="res://Assets/energy_bar_item.png" id="2_rtbej"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rtbej"]
-size = Vector2(58, 17)
+size = Vector2(58, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jtkdd"]
-size = Vector2(58, 17)
+size = Vector2(58, 16)
 
 [node name="EnergyBarItem" instance=ExtResource("1_wk7tf")]
 energy = 18
 item_type = "energy bar"
 
 [node name="Sprite2D" parent="." index="0"]
-position = Vector2(2, 1)
 texture = ExtResource("2_rtbej")
-hframes = 4
-vframes = 7
-frame = 11
 
 [node name="GrabBox" parent="." index="1"]
 position = Vector2(2, 1)
 
 [node name="CollisionShape2D" parent="GrabBox" index="0"]
-position = Vector2(-2, -1.5)
+position = Vector2(-2, -1)
 shape = SubResource("RectangleShape2D_rtbej")
 
 [node name="PhysicsCollisionShape" parent="." index="2"]
-position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_jtkdd")

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Mini_Jam_214"
-run/main_scene="uid://kuvp1brhjfkm"
+run/main_scene="uid://dtj8u1mi1xc2a"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://Assets/icon.svg"
 

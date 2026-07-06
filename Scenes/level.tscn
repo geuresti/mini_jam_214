@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://kuvp1brhjfkm"]
+[gd_scene load_steps=18 format=3 uid="uid://kuvp1brhjfkm"]
 
 [ext_resource type="Script" uid="uid://c1xrkjgck5agu" path="res://Scripts/level.gd" id="1_0f350"]
 [ext_resource type="PackedScene" uid="uid://ufh13opu64v3" path="res://Scenes/claw.tscn" id="1_tumq0"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://da18lnvit7hdl" path="res://Assets/background.png" id="2_wqkje"]
 [ext_resource type="PackedScene" uid="uid://oo8fgpx34kmi" path="res://Scenes/bucket.tscn" id="3_6phgx"]
 [ext_resource type="Texture2D" uid="uid://cm532s7cwy3xy" path="res://Assets/blank_button.png" id="3_8c0lf"]
+[ext_resource type="FontFile" uid="uid://mps0qq8u0o70" path="res://Assets/MINECRAFT.TTF" id="3_crh0w"]
 [ext_resource type="Texture2D" uid="uid://bmjjh3u0opv67" path="res://Assets/blank_button_pressed.png" id="4_754fn"]
 [ext_resource type="Script" uid="uid://bqk7bo457rxyr" path="res://Scripts/sound_container.gd" id="8_754fn"]
 [ext_resource type="AudioStream" uid="uid://c37wl7clxbcpj" path="res://Assets/Sounds/Mini Jam 214 - One More Time - Soundtrack.wav" id="9_bvt00"]
@@ -67,7 +68,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="GameOverUI" type="Control" parent="HUD_Container"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -102,28 +102,33 @@ alignment = 1
 
 [node name="GameOverLabel" type="Label" parent="HUD_Container/GameOverUI/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_crh0w")
 theme_override_font_sizes/font_size = 36
 text = "GAME OVER"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="HUD_Container/GameOverUI/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_crh0w")
 
 [node name="FinalLevel" type="Label" parent="HUD_Container/GameOverUI/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_crh0w")
 text = "You reached level 0"
 horizontal_alignment = 1
 
 [node name="FinalScore" type="Label" parent="HUD_Container/GameOverUI/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_crh0w")
 text = "Final Score: 0"
 horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="HUD_Container/GameOverUI/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_crh0w")
 
 [node name="MainMenuButton" type="TextureButton" parent="HUD_Container/GameOverUI/VBoxContainer"]
-custom_minimum_size = Vector2(100, 50)
+custom_minimum_size = Vector2(110, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 texture_normal = ExtResource("3_8c0lf")
@@ -133,12 +138,12 @@ stretch_mode = 0
 [node name="MainMenuButtonText" type="Label" parent="HUD_Container/GameOverUI/VBoxContainer/MainMenuButton"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.06
-anchor_top = 0.06
+anchor_left = 0.05
+anchor_top = 0.14
 anchor_right = 0.94
-anchor_bottom = 0.6
-offset_left = -1.0
-offset_right = -1.0
+anchor_bottom = 0.5
+offset_right = 3.0
+theme_override_fonts/font = ExtResource("3_crh0w")
 text = "Main Menu"
 horizontal_alignment = 1
 

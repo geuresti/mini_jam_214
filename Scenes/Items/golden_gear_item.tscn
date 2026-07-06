@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dm7hilwuamw1x"]
+[gd_scene load_steps=5 format=3 uid="uid://dm7hilwuamw1x"]
 
 [ext_resource type="PackedScene" uid="uid://dnbrkwt8mctmj" path="res://Scenes/Items/item.tscn" id="1_g14cs"]
-[ext_resource type="Texture2D" uid="uid://24bv2iksrdfi" path="res://Assets/sprites.png" id="2_7hja7"]
+[ext_resource type="Texture2D" uid="uid://cl1fc4st5f3un" path="res://Assets/golden_gear.png" id="2_7hja7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_irwba"]
+radius = 16.0312
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_si63t"]
+radius = 16.0
 
 [node name="GoldenGearItem" instance=ExtResource("1_g14cs")]
 points = 15
@@ -9,8 +15,10 @@ energy = 5
 item_type = "golden gear"
 
 [node name="Sprite2D" parent="." index="0"]
-scale = Vector2(1, 1)
 texture = ExtResource("2_7hja7")
-hframes = 9
-vframes = 6
-frame = 1
+
+[node name="CollisionShape2D" parent="GrabBox" index="0"]
+shape = SubResource("CircleShape2D_irwba")
+
+[node name="PhysicsCollisionShape" parent="." index="2"]
+shape = SubResource("CircleShape2D_si63t")

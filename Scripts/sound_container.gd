@@ -23,14 +23,14 @@ func _ready() -> void:
 # Fade the music in over small duration
 func fade_in_background_music() -> void:
 	# Start volume
-	background_music.volume_db = -20
+	background_music.volume_db = -30
 	background_music.play()
 	var tween = create_tween()
-	# End at -10 decibles over 3 seconds
+	# End at -15 decibles over 3 seconds
 	tween.tween_property(
 		background_music,
 		"volume_db",
-		-20,
+		-15,
 		3
 	)
 

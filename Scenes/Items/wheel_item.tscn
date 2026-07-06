@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dps138fkfwiv"]
 
 [ext_resource type="PackedScene" uid="uid://dnbrkwt8mctmj" path="res://Scenes/Items/item.tscn" id="1_amk5p"]
-[ext_resource type="Texture2D" uid="uid://24bv2iksrdfi" path="res://Assets/sprites.png" id="2_c6gbp"]
+[ext_resource type="Texture2D" uid="uid://bg0g2lh1qoknj" path="res://Assets/wheel.png" id="2_c6gbp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bw6c8"]
 radius = 16.0312
@@ -15,14 +15,9 @@ item_type = "wheel"
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_c6gbp")
-hframes = 9
-vframes = 5
-frame = 4
 
 [node name="CollisionShape2D" parent="GrabBox" index="0"]
-position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_bw6c8")
 
 [node name="PhysicsCollisionShape" parent="." index="2"]
-position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_0nq4c")

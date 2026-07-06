@@ -145,9 +145,8 @@ func fade_in_out(fade_item: Control, fade_in: bool, duration: float) -> bool:
 	await tween.finished
 	return true
 
-# WIP
+# Go to main menu
 func _on_main_menu_button_pressed() -> void:
-	print("Main Menu Button Pressed")
 	emit_signal("play_button_pressed_sound")
-	await get_tree().create_timer(0.5).timeout
-	
+	await get_tree().create_timer(0.25).timeout
+	get_tree().change_scene_to_file("res://Scenes/menu.tscn")

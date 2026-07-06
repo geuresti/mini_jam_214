@@ -1,21 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://b46xwaopl5tqg"]
+[gd_scene load_steps=5 format=3 uid="uid://b46xwaopl5tqg"]
 
 [ext_resource type="PackedScene" uid="uid://dnbrkwt8mctmj" path="res://Scenes/Items/item.tscn" id="1_rqtlo"]
-[ext_resource type="Texture2D" uid="uid://24bv2iksrdfi" path="res://Assets/sprites.png" id="2_13r7y"]
+[ext_resource type="Texture2D" uid="uid://ddsriyu3e5w8r" path="res://Assets/crate.png" id="2_bpk8u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bpk8u"]
+size = Vector2(34, 36.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ky4sd"]
+size = Vector2(34, 36)
 
 [node name="CrateItem" instance=ExtResource("1_rqtlo")]
 item_type = "crate"
 
 [node name="Sprite2D" parent="." index="0"]
-position = Vector2(2, 1)
-scale = Vector2(1, 1)
-texture = ExtResource("2_13r7y")
-hframes = 7
-vframes = 4
-frame = 4
+texture = ExtResource("2_bpk8u")
 
 [node name="CollisionShape2D" parent="GrabBox" index="0"]
-position = Vector2(-1.5, 0)
+position = Vector2(0, -0.25)
+shape = SubResource("RectangleShape2D_bpk8u")
 
 [node name="PhysicsCollisionShape" parent="." index="2"]
-position = Vector2(-1.5, 0)
+shape = SubResource("RectangleShape2D_ky4sd")

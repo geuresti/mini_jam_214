@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvlqnpsx4cevk"]
+[gd_scene load_steps=5 format=3 uid="uid://cvlqnpsx4cevk"]
 
 [ext_resource type="PackedScene" uid="uid://dnbrkwt8mctmj" path="res://Scenes/Items/item.tscn" id="1_m3dlb"]
-[ext_resource type="Texture2D" uid="uid://24bv2iksrdfi" path="res://Assets/sprites.png" id="2_7ubyo"]
+[ext_resource type="Texture2D" uid="uid://4wo8dxakbsfs" path="res://Assets/screw.png" id="2_7ubyo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_om1di"]
+size = Vector2(29, 35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iycik"]
+size = Vector2(29, 35)
 
 [node name="ScrewItem" instance=ExtResource("1_m3dlb")]
 points = 15
@@ -10,12 +16,11 @@ item_type = "screw"
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(1, -2)
 texture = ExtResource("2_7ubyo")
-hframes = 9
-vframes = 5
-frame = 2
 
 [node name="CollisionShape2D" parent="GrabBox" index="0"]
-position = Vector2(1.5, -2.5)
+position = Vector2(1.5, -1.5)
+shape = SubResource("RectangleShape2D_om1di")
 
 [node name="PhysicsCollisionShape" parent="." index="2"]
-position = Vector2(1.5, -2.5)
+position = Vector2(1.5, -1.5)
+shape = SubResource("RectangleShape2D_iycik")

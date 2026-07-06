@@ -1,0 +1,156 @@
+[gd_scene load_steps=21 format=3 uid="uid://dtj8u1mi1xc2a"]
+
+[ext_resource type="Texture2D" uid="uid://o808cuk25jws" path="res://Assets/Logo 2.png" id="1_jsrd8"]
+[ext_resource type="Script" uid="uid://dfpgxag2c8ktj" path="res://Scripts/menu.gd" id="1_q3rjx"]
+[ext_resource type="Texture2D" uid="uid://102qsme4frnj" path="res://Assets/play_button_neutral.png" id="2_wbdvm"]
+[ext_resource type="Texture2D" uid="uid://bdk4lqblvk2ae" path="res://Assets/play_button_pressed.png" id="3_q3rjx"]
+[ext_resource type="Texture2D" uid="uid://dt2nuso4e5jgt" path="res://Assets/exit_button_neutral.png" id="4_6swd7"]
+[ext_resource type="Texture2D" uid="uid://cwl4f6es3kjsd" path="res://Assets/exit_button_pressed.png" id="5_7qvly"]
+[ext_resource type="FontFile" uid="uid://mps0qq8u0o70" path="res://Assets/MINECRAFT.TTF" id="6_rfqti"]
+[ext_resource type="Texture2D" uid="uid://cl1fc4st5f3un" path="res://Assets/golden_gear.png" id="6_wbdvm"]
+[ext_resource type="Texture2D" uid="uid://iwvpj60c4g5r" path="res://Assets/bomb.png" id="8_23t3j"]
+[ext_resource type="Texture2D" uid="uid://4wo8dxakbsfs" path="res://Assets/screw.png" id="9_8ph6h"]
+[ext_resource type="Texture2D" uid="uid://burkj8e7epq5u" path="res://Assets/hex_nut.png" id="10_5ti5v"]
+[ext_resource type="Texture2D" uid="uid://d1aks74uhwpu5" path="res://Assets/gear.png" id="11_1by5w"]
+[ext_resource type="Texture2D" uid="uid://b1wy1str6kqmf" path="res://Assets/energy_bar_item.png" id="12_kmwmt"]
+[ext_resource type="AudioStream" uid="uid://c37wl7clxbcpj" path="res://Assets/Sounds/Mini Jam 214 - One More Time - Soundtrack.wav" id="14_5ti5v"]
+[ext_resource type="AudioStream" uid="uid://bn6cq5cvr7swd" path="res://Assets/Sounds/ButtonClick_02.wav" id="15_1by5w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5ti5v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1by5w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kmwmt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rc6uw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_23t3j"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1152.0
+offset_bottom = -648.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q3rjx")
+
+[node name="Background" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = -1
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.172549, 0.207843, 0.301961, 1)
+metadata/_edit_lock_ = true
+
+[node name="Logo" type="Sprite2D" parent="."]
+position = Vector2(576, 158)
+texture = ExtResource("1_jsrd8")
+metadata/_edit_lock_ = true
+
+[node name="PlayButton" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 0
+offset_left = 496.0
+offset_top = 320.0
+offset_right = 656.0
+offset_bottom = 400.0
+texture_normal = ExtResource("2_wbdvm")
+texture_pressed = ExtResource("3_q3rjx")
+stretch_mode = 0
+
+[node name="ExitButton" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(160, 80)
+layout_mode = 0
+offset_left = 496.0
+offset_top = 424.0
+offset_right = 656.0
+offset_bottom = 504.0
+texture_normal = ExtResource("4_6swd7")
+texture_pressed = ExtResource("5_7qvly")
+stretch_mode = 0
+
+[node name="TutorialButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 520.0
+offset_top = 526.0
+offset_right = 632.0
+offset_bottom = 566.0
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_rfqti")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_5ti5v")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_1by5w")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_kmwmt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_rc6uw")
+theme_override_styles/normal = SubResource("StyleBoxFlat_23t3j")
+text = "How to Play"
+
+[node name="SpriteContainer" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GoldenGear" type="Sprite2D" parent="SpriteContainer"]
+position = Vector2(144, 112)
+rotation = 0.414328
+scale = Vector2(3, 3)
+texture = ExtResource("6_wbdvm")
+
+[node name="Bomb" type="Sprite2D" parent="SpriteContainer"]
+position = Vector2(176, 368)
+rotation = -0.381305
+scale = Vector2(3, 3)
+texture = ExtResource("8_23t3j")
+
+[node name="Screw" type="Sprite2D" parent="SpriteContainer"]
+position = Vector2(312, 248)
+rotation = 0.263112
+scale = Vector2(3, 3)
+texture = ExtResource("9_8ph6h")
+
+[node name="HexNut" type="Sprite2D" parent="SpriteContainer"]
+position = Vector2(896, 176)
+rotation = 0.234349
+scale = Vector2(3, 3)
+texture = ExtResource("10_5ti5v")
+
+[node name="Gear" type="Sprite2D" parent="SpriteContainer"]
+position = Vector2(1024, 336)
+rotation = -0.384171
+scale = Vector2(3, 3)
+texture = ExtResource("11_1by5w")
+
+[node name="EnergyBar" type="Sprite2D" parent="SpriteContainer"]
+position = Vector2(936, 464)
+rotation = 0.150995
+scale = Vector2(3, 3)
+texture = ExtResource("12_kmwmt")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 576.0
+offset_right = 182.0
+offset_bottom = 625.0
+theme_override_fonts/font = ExtResource("6_rfqti")
+theme_override_font_sizes/font_size = 24
+text = "by Mathieu & Giotaro
+for Mini Jam 214  "
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_5ti5v")
+volume_db = -10.0
+
+[node name="ButtonPress" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_1by5w")
+volume_db = -5.0
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="TutorialButton" to="." method="_on_tutorial_button_pressed"]

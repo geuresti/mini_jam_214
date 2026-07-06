@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://c41irqex016gn"]
+[gd_scene load_steps=4 format=3 uid="uid://c41irqex016gn"]
 
 [ext_resource type="PackedScene" uid="uid://dnbrkwt8mctmj" path="res://Scenes/Items/item.tscn" id="1_7ajt2"]
-[ext_resource type="Texture2D" uid="uid://24bv2iksrdfi" path="res://Assets/sprites.png" id="2_ahyr3"]
+[ext_resource type="Texture2D" uid="uid://cycynscwts5r7" path="res://Assets/battery.png" id="2_ahyr3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gkyyp"]
+size = Vector2(32, 46)
 
 [node name="BatteryItem" instance=ExtResource("1_7ajt2")]
 points = 10
@@ -10,12 +13,10 @@ item_type = "battery"
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_ahyr3")
-hframes = 8
-vframes = 4
-frame = 6
 
 [node name="CollisionShape2D" parent="GrabBox" index="0"]
 position = Vector2(0, 1.5)
 
 [node name="PhysicsCollisionShape" parent="." index="2"]
-position = Vector2(0, 1.5)
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_gkyyp")
