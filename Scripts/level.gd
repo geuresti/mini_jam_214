@@ -45,6 +45,7 @@ func _ready() -> void:
 	
 	Globals.connect("next_level", _next_level_handler)
 	Globals.connect("game_over", _game_over_handler)
+	Globals.connect("game_over", sound_controller._stop_claw_moving_sound)
 	#level_floor.rotate(0.43)
 	game_over_UI.visible = false
 	# Update the level count and play transition effect
@@ -69,8 +70,8 @@ func _next_level_handler():
 
 # Fade in the "Game Over" UI
 func _game_over_handler(level, score) -> void:
-	$HUD_Container/GameOverUI/VBoxContainer/FinalLevel.text = "You reached level %d" % level
-	$HUD_Container/GameOverUI/VBoxContainer/FinalScore.text = "Final Score: %d" % score
+	$HUD_Container/GameOverUI/VBoxContainer/FinalLevel.text = "You reached level %d" % Globals.level
+	$HUD_Container/GameOverUI/VBoxContainer/FinalScore.text = "Final Score: %d" % Globals.score
 	game_over_UI.modulate = "ffffff00"
 	game_over_UI.visible = true
 	fade_in_out(game_over_UI, false, 1.5)

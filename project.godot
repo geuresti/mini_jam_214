@@ -19,6 +19,10 @@ config/icon="res://Assets/icon.svg"
 
 Globals="*res://Scripts/globals.gd"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [global_group]
 
 Item=""

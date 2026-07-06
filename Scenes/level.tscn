@@ -62,12 +62,14 @@ offset_right = -0.367981
 offset_bottom = 0.311981
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_crh0w")
 theme_override_font_sizes/font_size = 36
 text = "Level 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="GameOverUI" type="Control" parent="HUD_Container"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

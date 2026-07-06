@@ -1,7 +1,7 @@
 extends Node2D
 
 signal next_level
-signal game_over(level, score)
+signal game_over #(level, score)
 
 signal play_item_captured_sound
 

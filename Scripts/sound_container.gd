@@ -43,9 +43,26 @@ func _play_claw_grab_sound() -> void:
 
 var claw_moving_audio_position = 0.0
 
-func _play_claw_moving_sound() -> void: claw_moving.stream_paused = false
+func _play_claw_moving_sound() -> void: 
+	#claw_moving.stream_paused = false
+	if !claw_moving.playing:
+		claw_moving.play()
+		
+	create_tween().tween_property(
+		claw_moving,
+		"volume_db",
+		-26.0,
+		0.1
+	)
 
-func _stop_claw_moving_sound() -> void: claw_moving.stream_paused = true
+func _stop_claw_moving_sound() -> void:
+	#claw_moving.stream_paused = true
+	create_tween().tween_property(
+		claw_moving,
+		"volume_db",
+		-70.0,
+		0.1
+	)
 
 func _play_item_spawn_sound() -> void: item_spawn.play()
 
